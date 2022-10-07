@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_contact_item"
+    style="?attr/materialCardViewFilledStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="3dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="-30dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:cardCornerRadius="30dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="92dp"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="30dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_img_holder"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:cardCornerRadius="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="2dp">
+
+            <TextView
+                android:id="@+id/tv_contact_image_letter"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+
+            <ImageView
+                android:id="@+id/iv_contact_img"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:contentDescription="@string/contact_img_description"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_contact_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:layout_constraintBottom_toTopOf="@+id/tv_phone_numbers"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card_img_holder"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_phone_numbers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintEnd_toEndOf="@+id/tv_contact_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_contact_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_contact_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

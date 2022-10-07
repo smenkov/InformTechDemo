@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contacts_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="horizontal"
+    tools:context=".ui.contacts.ContactsFragment">
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/main_controls"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="rv_contacts,scroller_nested_cont" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/permission_controls"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tv_contact_perm_not_granted,btn_contact_perm_request" />
+
+    <TextView
+        android:id="@+id/tv_contact_perm_not_granted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/permission_not_granted_text"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        app:layout_constraintBottom_toTopOf="@+id/btn_contact_perm_request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_contact_perm_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/allow_access_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_contact_perm_not_granted" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_contacts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="40dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/scroller_nested_cont"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_contact" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroller_nested_cont"
+        android:layout_width="42dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorSurfaceVariant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.reddit.indicatorfastscroll.FastScrollerView
+            android:id="@+id/scroller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            app:fastScrollerIconColor="?attr/colorOnSurface"
+            app:fastScrollerTextPadding="12dp"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
