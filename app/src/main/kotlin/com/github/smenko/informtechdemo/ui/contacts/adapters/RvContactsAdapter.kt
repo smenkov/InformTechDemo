@@ -1,13 +1,14 @@
 package com.github.smenko.informtechdemo.ui.contacts.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.github.smenko.informtechdemo.utils.clickWithDebounce
 import com.github.smenko.informtechdemo.databinding.ItemContactBinding
 import com.github.smenko.informtechdemo.models.ContactUiDto
+
 
 class RvContactsAdapter(private val onItemClick: (ContactUiDto) -> Unit) :
     ListAdapter<ContactUiDto, ContactViewHolder>(ContactUiDiffCallBack()) {
@@ -21,13 +22,21 @@ class RvContactsAdapter(private val onItemClick: (ContactUiDto) -> Unit) :
     }
 
     private fun bindItem(viewHolder: ContactViewHolder) {
-        viewHolder.itemView.clickWithDebounce {
-            onItemClick(getItem(viewHolder.pos))
+        viewHolder.itemView.setOnClickListener {
+            var view: View = it
+            var parent: View = it.parent as View
+            while (parent !is RecyclerView) {
+                view = parent
+                parent = parent.parent as View
+            }
+            val position: Int = parent.getChildAdapterPosition(view)
+            onItemClick(getItem(position))
         }
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.bind(getItem(position), position)
+        holder.itemView.tag = position
     }
 
     fun getContactLetter(position: Int): String =
